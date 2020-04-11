@@ -10,6 +10,6 @@ const port = Number(80);
 app.listen(port, () => {
     logger.info('Express server started on port: ' + port);
 });
-
+// app.use(vhost('*', ipfsPlugin()));
 app.use(vhost('embedly.remixproject.org', embedly()));
 app.use(vhost('*.remixproject.org', ipfsPlugin()));

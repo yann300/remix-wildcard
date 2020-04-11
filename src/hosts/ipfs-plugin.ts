@@ -1,12 +1,12 @@
 import connect from 'connect';
-import request from 'request';
+var proxy = require('express-http-proxy');
 
 export const ipfsPlugin = () => {
     const app = connect()
-    app.use((req: any, res: any, next: any) => {
-        console.log(req)
-        const path = 'https://ipfsgw.komputing.org/ipfs/QmQmK435v4io3cp6N9aWQHYmgLxpUejjC1RmZCbqL7MJaM/' + req.path
-        request(path).pipe(res)
-    })
+    app.use('/ipfs', proxy('ipfsgw.komputing.org', {
+        proxyReqPathResolver: (req: any) => {
+            return new Promise((resolve, reject) => resolve('/ipfs' + req.url));
+          }
+    }))
     return app
 }
