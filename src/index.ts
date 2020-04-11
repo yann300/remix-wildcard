@@ -6,7 +6,7 @@ import { embedly } from './hosts/embedly';
 import { ipfsPlugin } from './hosts/ipfs-plugin';
 
 // Start the server
-const port = Number(process.env.PORT || 80);
+const port = Number(80);
 app.listen(port, () => {
     logger.info('Express server started on port: ' + port);
 });
