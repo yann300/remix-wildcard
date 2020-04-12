@@ -12,4 +12,4 @@ app.listen(port, () => {
 });
 // app.use(vhost('*', ipfsPlugin()));
 app.use(vhost('embedly.remixproject.org', embedly()));
-app.use(vhost('*.remixproject.org', ipfsPlugin()));
+app.use(vhost('*.plugin.remixproject.org', ipfsPlugin()));
