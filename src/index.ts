@@ -18,11 +18,10 @@ app.listen(port, () => {
 });
 
 const httpsServer = https.createServer({
-    key: fs.readFileSync('/opt/ssl/server.key'),
-    cert: fs.readFileSync('/opt/ssl/server.cert'),
+    key: fs.readFileSync('/etc/letsencrypt/live/embedly.remixproject.org/privkey.pem'),
+    cert: fs.readFileSync('/etc/letsencrypt/live/embedly.remixproject.org/fullchain.pem'),
   }, app);
   
 httpsServer.listen(443, () => {
     logger.info('HTTPS Server running on port 443');
 });
-
