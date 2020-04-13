@@ -9,7 +9,7 @@ import { ipfsPlugin } from './hosts/ipfs-plugin';
 
 // app.use(vhost('*', ipfsPlugin()));
 app.use(vhost('embedly.remixproject.org', embedly()));
-app.use(vhost('*.plugin.remixproject.org', ipfsPlugin()));
+app.use(vhost('*.dyn.plugin.remixproject.org', ipfsPlugin()));
 
 // Start the server
 const port = Number(80);
@@ -18,8 +18,8 @@ app.listen(port, () => {
 });
 
 const httpsServer = https.createServer({
-    key: fs.readFileSync('/etc/letsencrypt/live/embedly.remixproject.org/privkey.pem'),
-    cert: fs.readFileSync('/etc/letsencrypt/live/embedly.remixproject.org/fullchain.pem'),
+    key: fs.readFileSync('/etc/letsencrypt/live/remixproject.org/privkey.pem'),
+    cert: fs.readFileSync('/etc/letsencrypt/live/remixproject.org/fullchain.pem'),
   }, app);
   
 httpsServer.listen(443, () => {
