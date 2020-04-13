@@ -6,8 +6,12 @@ import logger from '@shared/Logger';
 import vhost from 'vhost';
 import { embedly } from './hosts/embedly';
 import { ipfsPlugin } from './hosts/ipfs-plugin';
+import { remixProject } from './hosts/remix-project';
 
-// app.use(vhost('*', ipfsPlugin()));
+// app.use(vhost('*', remixProject()));
+
+app.use(vhost('remixproject.org', remixProject()));
+app.use(vhost('www.remixproject.org', remixProject()));
 app.use(vhost('embedly.remixproject.org', embedly()));
 app.use(vhost('*.dyn.plugin.remixproject.org', ipfsPlugin()));
 
