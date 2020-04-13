@@ -6,7 +6,10 @@
     "lint": "tslint --project \"tsconfig.json\"",
     "start": "node -r module-alias/register ./dist",
     "start:dev": "nodemon --config nodemon.json",
-    "test": "nodemon --config nodemon.test.json"
+    "test": "nodemon --config nodemon.test.json",
+    "start:prod": "NODE_ENV=production pm2 start --name remix npm -- run start",
+    "stop:prod": "pm2 stop remix",
+    "delete:prod": "pm2 delete remix"
   },
   "_moduleAliases": {
     "@daos": "dist/daos",
