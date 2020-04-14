@@ -9,7 +9,9 @@
     "test": "nodemon --config nodemon.test.json",
     "start:prod": "NODE_ENV=production pm2 start --name remix npm -- run start",
     "stop:prod": "pm2 stop remix",
-    "delete:prod": "pm2 delete remix"
+    "delete:prod": "pm2 delete remix",
+    "restart:prod": "npx pm2 stop remix; npx pm2 delete remix; npm run build && npm run start:prod",
+    "update": "git fetch origin master && git checkout origin/master"
   },
   "_moduleAliases": {
     "@daos": "dist/daos",
