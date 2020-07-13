@@ -21,11 +21,17 @@ app.listen(port, () => {
     logger.info('Express server started on port: ' + port);
 });
 
-const httpsServer = https.createServer({
-    key: fs.readFileSync('/etc/letsencrypt/live/remixproject.org/privkey.pem'),
-    cert: fs.readFileSync('/etc/letsencrypt/live/remixproject.org/fullchain.pem'),
-  }, app);
-  
-httpsServer.listen(443, () => {
-    logger.info('HTTPS Server running on port 443');
-});
+try {
+    const httpsServer = https.createServer({
+        key: fs.readFileSync('/etc/letsencrypt/live/remixproject.org/privkey.pem'),
+        cert: fs.readFileSync('/etc/letsencrypt/live/remixproject.org/fullchain.pem'),
+      }, app);
+      
+    httpsServer.listen(443, () => {
+        logger.info('HTTPS Server running on port 443');
+    });
+} catch (e) {
+    console.warn(e)
+}
+
+
