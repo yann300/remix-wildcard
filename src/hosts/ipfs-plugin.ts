@@ -7,7 +7,7 @@ export const ipfsPlugin = () => {
         res.set('x-frame-options', '')
         next();
       });
-    app.use('/ipfs', proxy('https://ipfs.ethdevops.io', {
+    app.use('/ipfs', proxy('https://remix-project.mypinata.cloud', {
         proxyReqPathResolver: (req: any) => {
             return new Promise((resolve, reject) => resolve('/ipfs' + req.url));
           }
