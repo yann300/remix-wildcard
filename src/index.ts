@@ -9,6 +9,7 @@ import { ipfsPlugin } from './hosts/ipfs-plugin';
 import { remixProject } from './hosts/remix-project';
 import { ipfsGatewayPlugin } from './hosts/ipfs-gateway-plugins';
 import { corsProxy } from './hosts/corsproxy';
+import { vyperProxy } from './hosts/vyperproxy'
 import { RSS } from './hosts/rss';
 
 // app.use(vhost('*', remixProject()));
@@ -18,6 +19,7 @@ app.use(vhost('embedly.remixproject.org', embedly()));
 app.use(vhost('*.dyn.plugin.remixproject.org', ipfsPlugin()));
 app.use(vhost('ipfs.remixproject.org', ipfsGatewayPlugin()));
 app.use(vhost('corsproxy.remixproject.org', corsProxy()));
+app.use(vhost('vyper.remixproject.org', vyperProxy()));
 app.use(vhost('rss.remixproject.org', RSS()));
 // Start the server
 const port = Number(80);
