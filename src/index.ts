@@ -17,7 +17,7 @@ app.use(vhost('remixproject.org', remixProject()));
 app.use(vhost('www.remixproject.org', remixProject()));
 app.use(vhost('embedly.remixproject.org', embedly()));
 app.use(vhost('*.dyn.plugin.remixproject.org', ipfsPlugin()));
-app.use(vhost('ipfs.remixproject.org', ipfsGatewayPlugin()));
+app.use(vhost('jqgt.remixproject.org', ipfsGatewayPlugin()));
 app.use(vhost('corsproxy.remixproject.org', corsProxy()));
 app.use(vhost('vyper.remixproject.org', vyperProxy()));
 app.use(vhost('rss.remixproject.org', RSS()));
