@@ -15,11 +15,5 @@ export const ipfsPlugin = () => {
           }
     }))
     
-   // app.use('/ipfs', createProxyMiddleware({ target: 'https://remix-project.mypinata.cloud', changeOrigin: true }));
-    // app.use('/api/v0/add', createProxyMiddleware({ target: 'https://ipfs.infura.io:5001', changeOrigin: true,
-   //     headers: {
-    //        Authorization: auth
-    //    } 
-    //}));
     return app
 }
