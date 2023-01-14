@@ -8,7 +8,7 @@ export const ipfsGatewayPlugin = () => {
     const projectSecret = 'ac36044e46b771ba4b550e7a3bb56ef6'
     const auth = 'Basic ' + Buffer.from(projectId + ':' + projectSecret).toString('base64')
     
-    app.use('/ipfs', proxy('https://ipfs.io', {
+    app.use('/ipfs', proxy('https://ipfs-cluster.ethdevops.io', {
         proxyReqPathResolver: (req: any) => {
 		console.log(req.url)
             return new Promise((resolve, reject) => resolve('/ipfs' + req.url));

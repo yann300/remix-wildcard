@@ -11,6 +11,14 @@ import { ipfsGatewayPlugin } from './hosts/ipfs-gateway-plugins';
 import { corsProxy } from './hosts/corsproxy';
 import { vyperProxy } from './hosts/vyperproxy'
 import { RSS } from './hosts/rss';
+import morgan from 'morgan';
+
+// log using winston
+app.use(morgan('common', {
+    stream: fs.createWriteStream('./access.log', {flags: 'a'})
+}));
+app.use(morgan('dev'));
+
 
 // app.use(vhost('*', remixProject()));
 app.use(vhost('remixproject.org', remixProject()));
