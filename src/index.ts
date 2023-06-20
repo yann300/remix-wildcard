@@ -12,6 +12,7 @@ import { corsProxy } from './hosts/corsproxy';
 import { vyperProxy } from './hosts/vyperproxy'
 import { RSS } from './hosts/rss';
 import morgan from 'morgan';
+import { StatusPlugin } from './hosts/status'
 
 // log using winston
 app.use(morgan('common', {
@@ -29,6 +30,7 @@ app.use(vhost('jqgt.remixproject.org', ipfsGatewayPlugin()));
 app.use(vhost('corsproxy.remixproject.org', corsProxy()));
 app.use(vhost('vyper.remixproject.org', vyperProxy()));
 app.use(vhost('rss.remixproject.org', RSS()));
+app.use(vhost('status.remixproject.org', StatusPlugin()));
 // Start the server
 const port = Number(80);
 app.listen(port, () => {
