@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { Request } from 'express';
 import { Configuration, OpenAIApi, CreateChatCompletionResponse } from 'openai'
 
 export const openaigpt = () => {
@@ -8,8 +8,12 @@ export const openaigpt = () => {
       });
     const openai = new OpenAIApi(configuration)
     const app = express()
-    
-    app.post('/', async (req: any, res: any, next: any) => {
+    const ips = new Map<string, number>()
+    app.post('/', async (req: Request, res: any, next: any) => {
+        if (ips.get(req.ip) && Date.now() - (ips.get(req.ip) as number) < 2000) { // 1 call every 2 seconds
+          return
+        }
+        ips.set(req.ip, Date.now())
         const prompt = req.body.prompt
         const result = await openai.createChatCompletion(
             {
