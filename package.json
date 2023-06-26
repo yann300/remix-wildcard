@@ -36,7 +36,8 @@
     "module-alias": "^2.2.2",
     "morgan": "^1.10.0",
     "vhost": "^3.0.2",
-    "winston": "^3.2.1"
+    "winston": "^3.2.1",
+    "openai": "3.3.0"
   },
   "devDependencies": {
     "@types/command-line-args": "^5.0.0",
