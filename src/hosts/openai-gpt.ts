@@ -1,5 +1,6 @@
 import express, { Request } from 'express';
 import { Configuration, OpenAIApi, CreateChatCompletionResponse } from 'openai'
+import cors from 'cors'
 
 export const openaigpt = () => {
     const apiToken = process.env['OPENAIGPT_API_TOKEN']
@@ -9,6 +10,7 @@ export const openaigpt = () => {
     const openai = new OpenAIApi(configuration)
     const app = express()
     const ips = new Map<string, number>()
+    app.use(cors())
     app.post('/', async (req: Request, res: any, next: any) => {
         if (ips.get(req.ip) && Date.now() - (ips.get(req.ip) as number) < 2000) { // 1 call every 2 seconds
           return
