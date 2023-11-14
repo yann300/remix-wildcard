@@ -19,11 +19,11 @@ export const openaigpt = () => {
         const prompt = req.body.prompt
         const result = await openai.createChatCompletion(
             {
-              model: "gpt-3.5-turbo",
+              model: "gpt-4",
               messages: [{role: "user", content: prompt}]
             },
             {
-              timeout: 10000,
+              timeout: 60000,
               headers: {
                 "Authorization": `Bearer ${apiToken}`,
               },

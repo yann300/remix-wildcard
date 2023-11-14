@@ -10,6 +10,7 @@ import { remixProject } from './hosts/remix-project';
 import { ipfsGatewayPlugin } from './hosts/ipfs-gateway-plugins';
 import { corsProxy } from './hosts/corsproxy';
 import { vyperProxy } from './hosts/vyperproxy'
+import { vyper2Proxy } from './hosts/vyper2'
 import { openaigpt } from './hosts/openai-gpt'
 import { RSS } from './hosts/rss';
 import morgan from 'morgan';
@@ -30,6 +31,7 @@ app.use(vhost('*.dyn.plugin.remixproject.org', ipfsPlugin()));
 app.use(vhost('jqgt.remixproject.org', ipfsGatewayPlugin()));
 app.use(vhost('corsproxy.remixproject.org', corsProxy()));
 app.use(vhost('vyper.remixproject.org', vyperProxy()));
+app.use(vhost('vyper2.remixproject.org', vyper2Proxy()));
 app.use(vhost('rss.remixproject.org', RSS()));
 app.use(vhost('status.remixproject.org', StatusPlugin()));
 app.use(vhost('openai-gpt.remixproject.org', openaigpt()));
