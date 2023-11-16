@@ -12,7 +12,10 @@ export const openaigpt = () => {
     const ips = new Map<string, number>()
     app.use(cors())
     app.post('/', async (req: Request, res: any, next: any) => {
-        if (ips.get(req.ip) && Date.now() - (ips.get(req.ip) as number) < 2000) { // 1 call every 2 seconds
+        if (ips.get(req.ip) && Date.now() - (ips.get(req.ip) as number) < 30000) { // 1 call every 30 seconds
+          res.setHeader('Content-Type', 'application/json');
+          res.end(JSON.stringify({error: 'rate limit exceeded'}));
+          next()
           return
         }
         ips.set(req.ip, Date.now())
