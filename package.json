@@ -4,7 +4,7 @@
   "scripts": {
     "build": "node ./util/build.js",
     "lint": "tslint --project \"tsconfig.json\"",
-    "start": "OPENAIGPT_API_TOKEN=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 node -r module-alias/register ./dist",
+    "start": "OPENAIGPT_API_TOKEN=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 node -r module-alias/register ./dist",
     "start:dev": "nodemon --config nodemon.json",
     "test": "nodemon --config nodemon.test.json",
     "start:prod": "NODE_ENV=production pm2 start --name remix npm -- run start",
@@ -33,7 +33,7 @@
     "helmet": "^3.22.0",
     "http-proxy-middleware": "^2.0.0",
     "http-status-codes": "^1.4.0",
-    "module-alias": "^2.2.2",
+    "module-alias": "^2.2.3",
     "morgan": "^1.10.0",
     "openai": "3.3.0",
     "vhost": "^3.0.2",
