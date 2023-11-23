@@ -12,7 +12,6 @@ export const gptchat = () => {
             console.log('gpt-chat response')
             // set the header so the browser doesn't complain
             res.setHeader('Access-Control-Allow-Origin', '*')
-            console.log({ responseBuffer })
             return responseBuffer.toString('utf8')
         })
     }))
