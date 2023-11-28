@@ -6,10 +6,11 @@ export const gptchat = () => {
     const app = connect()
     app.use('/', createProxyMiddleware({
         target: 'http://localhost:9080/',
-        changeOrigin: false,
+        changeOrigin: true,
+        timeout: 1000 * 60 * 5,
+        proxyTimeout: 1000 * 60 * 5,
         selfHandleResponse: true,
         onProxyRes: responseInterceptor(async (responseBuffer, proxyRes, req, res) => {
-            console.log('gpt-chat response')
             // set the header so the browser doesn't complain
             res.setHeader('Access-Control-Allow-Origin', '*')
             return responseBuffer.toString('utf8')

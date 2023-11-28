@@ -6,7 +6,7 @@ export const vyper2Proxy = () => {
     const app = connect()
     app.use('/', createProxyMiddleware({
         target: 'http://localhost:8000/',
-        changeOrigin: false,
+        changeOrigin: true,
         selfHandleResponse: true,
         onProxyRes: responseInterceptor(async (responseBuffer, proxyRes, req, res) => {
             // set the header so the browser doesn't complain
