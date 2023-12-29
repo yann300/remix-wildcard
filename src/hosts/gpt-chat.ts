@@ -7,9 +7,14 @@ export const gptchat = () => {
     app.use('/', createProxyMiddleware({
         target: 'http://localhost:9080/',
         changeOrigin: true,
-        timeout: 1000 * 60 * 5,
-        proxyTimeout: 1000 * 60 * 5,
         selfHandleResponse: true,
+        onProxyReq(proxyReq:any, req: any, res: any) {
+            proxyReq.setHeader('content-length', JSON.stringify(req.body).length);
+            proxyReq.setHeader('content-type', 'application/json');
+            // Write out body changes to the proxyReq stream
+            proxyReq.write(JSON.stringify(req.body));
+            proxyReq.end();
+        },
         onProxyRes: responseInterceptor(async (responseBuffer, proxyRes, req, res) => {
             // set the header so the browser doesn't complain
             res.setHeader('Access-Control-Allow-Origin', '*')

@@ -8,9 +8,21 @@ export const vyper2Proxy = () => {
         target: 'http://localhost:8000/',
         changeOrigin: true,
         selfHandleResponse: true,
+        onProxyReq(proxyReq:any, req: any, res: any) {
+            proxyReq.setHeader('content-length', JSON.stringify(req.body).length);
+            proxyReq.setHeader('content-type', 'application/json')
+            res.setHeader('Access-Control-Allow-Origin', '*')
+            res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS')
+            res.setHeader('Access-Control-Allow-Headers', 'Content-Type')
+            // Write out body changes to the proxyReq stream
+            proxyReq.write(JSON.stringify(req.body));
+            proxyReq.end();
+        },
         onProxyRes: responseInterceptor(async (responseBuffer, proxyRes, req, res) => {
             // set the header so the browser doesn't complain
-            res.setHeader('Access-Control-Allow-Origin', '*');
+            res.setHeader('Access-Control-Allow-Origin', '*')
+            res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS')
+            res.setHeader('Access-Control-Allow-Headers', 'Content-Type')
             return responseBuffer.toString('utf8')
         })
     }));
