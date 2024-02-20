@@ -13,7 +13,7 @@ export const vyper2Proxy = () => {
             proxyReq.setHeader('content-type', 'application/json')
             res.setHeader('Access-Control-Allow-Origin', '*')
             res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS')
-            res.setHeader('Access-Control-Allow-Headers', 'Content-Type')
+            res.setHeader('Access-Control-Allow-Headers', '*')
             // Write out body changes to the proxyReq stream
             proxyReq.write(JSON.stringify(req.body));
             proxyReq.end();
@@ -22,7 +22,7 @@ export const vyper2Proxy = () => {
             // set the header so the browser doesn't complain
             res.setHeader('Access-Control-Allow-Origin', '*')
             res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS')
-            res.setHeader('Access-Control-Allow-Headers', 'Content-Type')
+            res.setHeader('Access-Control-Allow-Headers', '*')
             return responseBuffer.toString('utf8')
         })
     }));
