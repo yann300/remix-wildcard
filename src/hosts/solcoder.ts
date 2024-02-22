@@ -6,7 +6,6 @@ export const solcoder = () => {
   const ips = new Map<string, number>()
   app.use(cors())
   app.post('/', async (req: Request, res: any, next: any) => {
-    console.log('req', req)
     if (ips.get(req.ip) && (Date.now() - (ips.get(req.ip) as number)) < 10000) { // 1 call every 10 seconds
       res.setHeader('Content-Type', 'application/json');
       const remainer = 10000 - (Date.now() - (ips.get(req.ip) as number))
@@ -14,7 +13,6 @@ export const solcoder = () => {
       next()
       return
     }
-    console.log('ip', req.ip)
     ips.set(req.ip, Date.now())
 
     const prompt = req.body.data[0]
@@ -26,6 +24,7 @@ export const solcoder = () => {
       Accept: 'application/json',
         'Content-Type': 'application/json',
       },
+      // Code completion requires 6 parameters, while the other tasks require 5
       body: JSON.stringify(task==="code_completion" ? 
         {"data":[prompt,params[0], params[1], params[2], params[3], params[4], params[5]]} :
         {"data":[prompt,params[0], params[1], params[2], params[3], params[4]]} )
